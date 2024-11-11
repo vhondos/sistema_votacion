@@ -1,0 +1,11 @@
+{
+  "name": "sistema_votacion",
+  "version": "1.0.0",
+  "description": "Applicattion to make in class",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
