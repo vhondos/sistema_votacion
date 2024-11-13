@@ -35,6 +35,12 @@ botonInsideOut?.addEventListener("click", function () {
 })
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     console.log("La página ha terminado de cargarse.");
-// });
+const getMostVotedMovie = () => {
+    let movie:Movie = PELICULAS[0]
+    PELICULAS.map((film) => {
+        if(film.votos > movie.votos){
+            movie = film
+        }
+    })
+    alert(`La película más votada es ${movie.name}`)
+}

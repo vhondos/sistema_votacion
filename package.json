@@ -4,7 +4,8 @@
   "description": "Applicattion to make in class",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "tsc --watch"
   },
   "author": "",
   "license": "ISC"

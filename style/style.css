@@ -65,3 +65,11 @@ main {
 .card button:hover {
     background-color: #0056b3;
 }
+
+header div{
+    background-color: rgba(223, 219, 219, 0.479);
+}
+header div:hover{
+    cursor: pointer;
+    background-color: rgba(223, 219, 219, 0.836);
+}

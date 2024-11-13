@@ -26,6 +26,12 @@ const boton = document.querySelector('button');
 botonInsideOut === null || botonInsideOut === void 0 ? void 0 : botonInsideOut.addEventListener("click", function () {
     console.log('click');
 });
-// document.addEventListener("DOMContentLoaded", function() {
-//     console.log("La página ha terminado de cargarse.");
-// });
+const getMostVotedMovie = () => {
+    let movie = PELICULAS[0];
+    PELICULAS.map((film) => {
+        if (film.votos > movie.votos) {
+            movie = film;
+        }
+    });
+    alert(`La película más votada es ${movie.name}`);
+};
