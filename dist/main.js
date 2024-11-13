@@ -21,6 +21,11 @@ const PELICULAS = [
         votos: 0,
     }
 ];
+const botonInsideOut = document.getElementById('insideOut2');
+const boton = document.querySelector('button');
+botonInsideOut === null || botonInsideOut === void 0 ? void 0 : botonInsideOut.addEventListener("click", function () {
+    console.log('click');
+});
 // document.addEventListener("DOMContentLoaded", function() {
 //     console.log("La página ha terminado de cargarse.");
 // });

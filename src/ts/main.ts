@@ -26,6 +26,15 @@ const PELICULAS:Movie[] =  [
     }
 ]
 
+const botonInsideOut = document.getElementById('insideOut2')
+
+const boton = document.querySelector('button')
+
+botonInsideOut?.addEventListener("click", function () {
+    console.log('click')
+})
+
+
 // document.addEventListener("DOMContentLoaded", function() {
 //     console.log("La página ha terminado de cargarse.");
 // });
