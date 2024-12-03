@@ -1,40 +1,103 @@
-interface Movie {
-    name:string;
-    votos:number;
+interface iPeli {
+  name: string;
+  imagen: string;
+  descripcion: string;
+  votos: number;
 }
 
-const PELICULAS:Movie[] =  [
-    {
-        name: "Inside Out 2",
-        votos: 0,
-    },
-    {
-        name: "Deadpool & Wolverine",
-        votos: 0,
-    },
-    {
-        name: "Despicable Me 4",
-        votos: 0,
-    },
-    {
-        name: "Godzilla y Kong: el nuevo imperio",
-        votos: 0,
-    },
-    {
-        name: "Alien: Romulus",
-        votos: 0,
-    }
-]
+const PELICULASDB: iPeli[] = [
+  {
+    name: "Inside Out 2",
+    imagen:
+      "https://pics.filmaffinity.com/Del_revaes_2_Inside_Out_2-347157127-large.jpg",
+    descripcion:
+      "En esta nueva entrega, Riley es ahora una adolescente enfrentando nuevas emociones y situaciones propias de su edad. Mientras se adapta a los cambios y desafíos de la adolescencia, nuevos personajes emocionales se unen a la historia, llevándonos a una aventura divertida y conmovedora dentro de su mente.",
+    votos: 0,
+  },
+  {
+    name: "Spider-Man: Across the Spider-Verse",
+    imagen:
+      "https://m.media-amazon.com/images/I/617ATFuYJnL._SX300_SY300_QL70_ML2_.jpg",
+    descripcion:
+      "Miles Morales regresa para unirse a una nueva aventura a través del multiverso. Con la ayuda de Gwen Stacy y otros Spider-People, luchan contra una amenaza que pone en peligro la estabilidad de todas las realidades.",
+    votos: 0,
+  },
+  {
+    name: "The Flash",
+    imagen:
+      "https://play-lh.googleusercontent.com/qa6fuSMpBZz0DmypQW-NChIBZqv4GpPwbKFJXaOulLxqCmyyMASF2c7Akzcz3xpJmX5ViZlVr-rRAHiypEM=w240-h480-rw",
+    descripcion:
+      "Barry Allen, también conocido como The Flash, viaja en el tiempo para salvar a su madre de un trágico destino, pero sus acciones desencadenan una serie de eventos inesperados que alteran la realidad y ponen en peligro la existencia misma del universo.",
+    votos: 0,
+  },
+  {
+    name: "The Marvels",
+    imagen:
+      "https://pics.filmaffinity.com/The_Marvels-236469321-large.jpg",
+    descripcion:
+      "Carol Danvers, Kamala Khan y Monica Rambeau se ven obligadas a trabajar juntas cuando sus poderes se conectan de manera inesperada, enfrentándose a una amenaza intergaláctica que pone en peligro todo lo que conocen.",
+    votos: 0,
+  },
+  {
+    name: "Elemental",
+    imagen:
+      "https://pics.filmaffinity.com/Elemental-522221727-large.jpg",
+    descripcion:
+      "En un mundo donde los elementos de la naturaleza tienen vida propia, una joven de fuego y un joven de agua deben aprender a convivir y superar sus diferencias para salvar su hogar, mientras exploran la importancia de la aceptación y la amistad.",
+    votos: 0,
+  },
+];
 
-const botonInsideOut = document.getElementById('insideOut2')
+function generarId(name: string): string {
+  return name
+    .split(" ")
+    .map((palabra) => palabra.charAt(0))
+    .join("");
+}
 
-const boton = document.querySelector('button')
+function construirCard(pelicula: iPeli) {
+  const idCard = generarId(pelicula.name);
+  console.log(`construyendo card de ${pelicula.name}`);
 
-botonInsideOut?.addEventListener("click", function () {
-    console.log('click')
-})
+  return `
+      <div class="card">
+        <picture>
+          <img src="${pelicula.imagen}" alt="Imagen_inside_out2" />
+        </picture>
+        <h3>${pelicula.name}</h3>
+        <form class="rating">
+          <input value="5" name="rating" id="${idCard}star5" type="radio">
+          <label for="${idCard}star5"></label>
+          <input value="4" name="rating" id="${idCard}star4" type="radio">
+          <label for="${idCard}star4"></label>
+          <input value="3" name="rating" id="${idCard}star3" type="radio">
+          <label for="${idCard}star3"></label>
+          <input value="2" name="rating" id="${idCard}star2" type="radio">
+          <label for="${idCard}star2"></label>
+          <input value="1" name="rating" id="${idCard}star1" type="radio">
+          <label for="${idCard}star1"></label>
+        </form>
+        <p>${pelicula.descripcion}</p>
+      </div>
+    `;
+}
 
+document.addEventListener("DOMContentLoaded", function () {
+  const main = document.querySelector<HTMLDivElement>('main')!;
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     console.log("La página ha terminado de cargarse.");
-// });
+  for (let i = 0; i < PELICULASDB.length; i++) {
+    main.innerHTML += construirCard(PELICULASDB[i]);
+  }
+
+  const forms = document.querySelectorAll<HTMLFormElement>("form")!;
+
+  forms.forEach((form, index) => {
+    form.addEventListener("input", function (event) {
+      const target = event.target as HTMLInputElement;
+      if (target.checked) {
+        PELICULASDB[index].votos = parseInt(target.value);
+        console.log(`La película ${PELICULASDB[index].name} tiene ${PELICULASDB[index].votos}`);
+      }
+    });
+  });
+});
