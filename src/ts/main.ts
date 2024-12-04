@@ -101,3 +101,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+const getMostVotedMovie = () => {
+  let movie = PELICULASDB[0];
+  PELICULASDB.map((film) => {
+      if (film.votos > movie.votos) {
+          movie = film;
+      }
+  });
+  alert(`La película más votada es ${movie.name}`);
+};
